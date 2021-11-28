@@ -1,0 +1,58 @@
+п»їPrivate Sub Worksheet_Activate()    ' РЎРѕР±РёСЂР°РµС‚ Р·Р°СЏРІРєРё СЃРѕ РІСЃРµС… Р»РёСЃС‚РѕРІ Рё СЃРѕСЂС‚РёСЂСѓРµС‚ РїРѕ РґР°С‚Рµ
+
+    total_rows = first_row
+
+    Application.ScreenUpdating = False
+    ' РћС‡РёС‰Р°РµРј Р»РёСЃС‚
+    range(Cells(first_row, 1), Cells(Cells.Find(what:="*", LookIn:=xlValues, SearchDirection:=xlPrevious, SearchOrder:=xlByRows).Row + 1, last_column)).ClearContents
+    Call run_Fill_ranges
+
+    ' РєРѕРїРёСЂСѓРµРј Р·Р°РїСЂРѕСЃС‹ РёР· РґСЂСѓРіРёС… Р»РёСЃС‚РѕРІ
+    For i = 2 To ThisWorkbook.Worksheets.Count
+        With Worksheets(i)
+            last_row = .range("A1:" & .Cells(1, last_column).Address).EntireColumn.Find(what:="*", LookIn:=xlValues, SearchDirection:=xlPrevious, SearchOrder:=xlByRows).Row
+            If last_row >= first_row Then
+                Dim r As range
+                Set r = .range(.Cells(first_row, 1), .Cells(last_row, last_column))
+                r.Copy Destination:=range("A" & total_rows)
+                total_rows = total_rows + r.Rows.Count
+            End If
+        End With
+    Next i
+
+    ' РЎРѕСЂС‚РёСЂСѓРµРј РїРѕ РґР°С‚Рµ
+    With ThisWorkbook.Worksheets(ActiveSheet.Name).Sort
+        .SortFields.Clear
+        .SortFields.Add Key:=range("D" & first_row), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:=xlSortNormal
+        .SetRange range(Cells(first_row, 1), Cells(total_rows, last_column))
+        .Header = xlNo
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+
+    ' РџРѕРґРіРѕРЅСЏРµРј РІС‹СЃРѕС‚Сѓ СЃС‚СЂРѕРє РїРѕРґ СЃРѕРґРµСЂР¶РёРјРѕРµ
+    ThisWorkbook.Worksheets(ActiveSheet.Name).Rows.AutoFit
+
+    ' С†РµРЅС‚СЂРёСЂСѓРµРј СЌРєСЂР°РЅ РЅР° РїРѕСЃР»РµРґРЅРµРј Р·Р°РїСЂРѕСЃРµ
+    Dim oncell As range
+    Set oncell = range("D" & total_rows - 1)
+    With ActiveWindow.VisibleRange
+        VisRows = .Rows.Count
+        VisCols = .Columns.Count
+    End With
+    With Application
+        .Goto reference:=oncell.Parent.Cells( _
+            .WorksheetFunction.Max(1, oncell.Row + _
+            (oncell.Rows.Count / 2) - (VisRows / 2)), _
+            .WorksheetFunction.Max(1, oncell.Column + _
+            (oncell.Columns.Count / 2) - _
+            .WorksheetFunction.RoundDown((VisCols / 2), 0))), _
+         scroll:=True
+    End With
+    oncell.Select
+
+    Application.ScreenUpdating = True
+
+End Sub

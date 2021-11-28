@@ -1,0 +1,94 @@
+п»їPrivate Sub Workbook_Open()
+
+Set App.App_Ev = Application
+
+Application.OnKey "^{END}", "gotoend"
+Application.OnKey "%1", "Alt_1"
+Application.OnKey "%2", "Alt_2"
+Application.OnKey "%3", "Alt_3"
+Application.OnKey "%b", "Duplicate_rows"
+Application.OnKey "%{UP}", "'Shift_selected ""up""'"
+Application.OnKey "%{DOWN}", "'Shift_selected ""down""'"
+Application.OnKey "%{RIGHT}", "'Shift_selected ""right""'"
+Application.OnKey "%{LEFT}", "'Shift_selected ""left""'"
+Application.OnKey "+^{END}", "shiftgotoend"
+Application.OnKey "^{TAB}", "TABpages"
+Application.OnKey "^b", "'РґРѕР»РіРёР№_СЂР°СЃС‡РµС‚ ""avto_ochenka_start""'"
+Application.OnKey "^w", "'РґРѕР»РіРёР№_СЂР°СЃС‡РµС‚ ""avto_ves""'"
+Application.OnKey "^o", "'РґРѕР»РіРёР№_СЂР°СЃС‡РµС‚ ""avto_koef_opis""'"
+Application.OnKey "^r", "'РґРѕР»РіРёР№_СЂР°СЃС‡РµС‚ ""PRESS_ctrl_r""'"
+Application.OnKey "^p", "'РґРѕР»РіРёР№_СЂР°СЃС‡РµС‚ ""avto_mownost""'"
+
+'Application.CommandBars.Add(Name:="Private Bar", Position:=msoBarBottom, Temporary:=True).Visible = True  'СЃРѕР·РґР°РµРј РІСЂРµРјРµРЅРЅСѓСЋ РїР°РЅРµР»СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ (СѓРґР°Р»СЏРµС‚СЃСЏ РїСЂРё Р·Р°РєСЂС‹С‚РёРё С„Р°Р№Р»Р°)
+'With Application.CommandBars("Private Bar").Controls.Add(Type:=msoControlButton)
+'    .Style = msoButtonCaption
+'    .Caption = " РћС‚Р»Р°РґРєР° "
+'    .TooltipText = "Р’С‹Р·С‹РІР°РµС‚ РѕС‚Р»Р°РґРѕС‡РЅРѕРµ РѕРєРЅРѕ"
+'    .OnAction = "Debug_window"
+'End With
+'With Application.CommandBars("Private Bar").Controls.Add(Type:=msoControlButton)
+'    .Style = msoButtonCaption
+'    .Caption = " РЎРєСЂС‹С‚СЊ "
+'    .TooltipText = "РЎРєСЂС‹РІР°РµС‚ СЃС‚СЂРѕРєРё СЃРїРµС†РёС„РёРєР°С†РёРё СЃ РЅСѓР»РµРІС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј"
+'    .OnAction = "hideemptyrows"
+'End With
+'With Application.CommandBars("Private Bar").Controls.Add(Type:=msoControlButton)
+'    .Style = msoButtonCaption
+'    .Caption = " {RUS} "
+'    .TooltipText = "Р’С‹РґРµР»СЏРµС‚ РєСЂР°СЃРЅС‹Рј С†РІРµС‚РѕРј СЃРёРјРІРѕР»С‹ РєРёСЂРёР»Р»РёС†С‹ РІ РІС‹Р±СЂР°РЅРЅРѕРј РґРёР°РїР°Р·РѕРЅРµ СЏС‡РµРµРє" & Chr(13) & "РќРµ СЂР°Р±РѕС‚Р°РµС‚ СЃ С„РѕСЂРјСѓР»Р°РјРё Рё РІС‹РґРµР»СЏРµС‚ РёС… Р·РµР»РµРЅС‹Рј"
+'    .OnAction = "СЂСѓСЃ_СЃРёРјРІРѕР»С‹"
+'End With
+'With Application.CommandBars("Private Bar").Controls.Add(Type:=msoControlButton)
+'    .Style = msoButtonCaption
+'    .Caption = " РЈР·РµР» "
+'    .TooltipText = "Р’СЃС‚Р°РІР»СЏРµС‚ РІ РІС‹Р±СЂР°РЅРЅСѓСЋ СЏС‡РµР№РєСѓ С„РѕСЂРјСѓР»Сѓ РґР»СЏ Р°РІС‚РѕРЅСѓРјРµСЂР°С†РёРё СѓР·Р»РѕРІ"
+'    .OnAction = "РќРѕРјРµСЂ_СѓР·Р»Р°"
+'End With
+'With Application.CommandBars("Private Bar").Controls.Add(Type:=msoControlButton)
+'    .Style = msoButtonCaption
+'    .Caption = " 4,1,2 "
+'    .TooltipText = "РџСЂРѕРґРѕР»Р¶Р°РµС‚ РЅСѓРјРµСЂР°С†РёСЋ РІРЅСѓС‚СЂРё СѓР·Р»Р° РґР»СЏ РІС‹Р±СЂР°РЅРЅС‹С… СЏС‡РµРµРє" & Chr(13) & "РџСЂРё РЅР°Р¶Р°С‚РѕР№ РєР»Р°РІРёС€Рµ Ctrl РЅР°С‡РёРЅР°РµС‚ РЅРѕРІС‹Р№ РїРѕРґРїСѓРЅРєС‚"
+'    .OnAction = "РїСЂРѕРґРѕР»Р¶РµРЅРёРµ_РЅСѓРјРµСЂР°С†РёРё"
+'End With
+'With Application.CommandBars("Private Bar").Controls.Add(Type:=msoControlButton)
+'    .Style = msoButtonCaption
+'    .Caption = " Sum "
+'    .TooltipText = "РџРѕРјРµС‰Р°РµС‚ РІ Р±СѓС„РµСЂ РѕР±РјРµРЅР° СЃСѓРјРјСѓ РІС‹РґРµР»РµРЅРЅС‹С… СЏС‡РµРµРє"
+'    .OnAction = "Summ_to_Clipboard"
+'End With
+'With Application.CommandBars("Private Bar").Controls.Add(Type:=msoControlButton)
+'    .Style = msoButtonCaption
+'    .Caption = " =Formula "
+'    .TooltipText = "РїРѕРјРµС‰Р°РµС‚ РІ Р±СѓС„РµСЂ РѕР±РјРµРЅР° С„РѕСЂРјСѓР»С‹ РІС‹РґРµР»РµРЅРЅРѕРіРѕ РґРёР°РїР°Р·РѕРЅР° СЏС‡РµРµРє"
+'    .OnAction = "Formula_to_Clipboard"
+'End With
+'With Application.CommandBars("Private Bar").Controls.Add(Type:=msoControlButton)
+'    .Style = msoButtonCaption
+'    .Caption = " РџСЂРёР»РѕР¶РµРЅРёРµ "
+'    .TooltipText = "Р¤РѕСЂРјРёСЂСѓРµС‚ РёР· С‚РµРєСѓС‰РµР№ СЃРїРµС†РёС„РёРєР°С†РёРё РЅРѕРІС‹Р№ Р»РёСЃС‚ РІ С„РѕСЂРјР°С‚Рµ РїСЂРёР»РѕР¶РµРЅРёСЏ Рє РґРѕРіРѕРІРѕСЂСѓ"
+'    .OnAction = "Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ_РїСЂРёР»РѕР¶РµРЅРёСЏ"
+'End With
+'With Application.CommandBars("Private Bar").Controls.Add(Type:=msoControlButton)
+'    .Style = msoButtonCaption
+'    .Caption = " $"
+'    .TooltipText = "Р¤РѕСЂРјР°С‚РёСЂСѓРµС‚ РІС‹РґРµР»РµРЅРЅС‹Р№ РґРёР°РїР°Р·РѕРЅ СЏС‡РµРµРє РІ РІР°Р»СЋС‚Сѓ 'РґРѕР»Р»Р°СЂ'"
+'    .OnAction = "РґРѕР»Р»Р°СЂС‹"
+'End With
+'With Application.CommandBars("Private Bar").Controls.Add(Type:=msoControlButton)
+'    .Style = msoButtonCaption
+'    .Caption = "СЂ"
+'    .TooltipText = "Р¤РѕСЂРјР°С‚РёСЂСѓРµС‚ РІС‹РґРµР»РµРЅРЅС‹Р№ РґРёР°РїР°Р·РѕРЅ СЏС‡РµРµРє РІ РІР°Р»СЋС‚Сѓ 'СЂСѓР±Р»СЊ'"
+'    .OnAction = "СЂСѓР±Р»Рё"
+'End With
+'With Application.CommandBars("Private Bar").Controls.Add(Type:=msoControlButton)
+'    .Style = msoButtonCaption
+'    .Caption = "в‚¬ "
+'    .TooltipText = "Р¤РѕСЂРјР°С‚РёСЂСѓРµС‚ РІС‹РґРµР»РµРЅРЅС‹Р№ РґРёР°РїР°Р·РѕРЅ СЏС‡РµРµРє РІ РІР°Р»СЋС‚Сѓ 'РµРІСЂРѕ'"
+'    .OnAction = "РµРІСЂРѕ"
+'End With
+
+'Call RAM_files_update
+'Application.EnableEvents = False
+
+'Debug_form.Left = Application.Width - Debug_form.Width - 5
+End Sub

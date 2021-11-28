@@ -1,0 +1,29 @@
+п»ї'Private Sub Workbook_BeforeClose(Cancel As Boolean)
+'    is_saved = ThisWorkbook.Saved
+'    Application.Calculation = xlCalculationAutomatic
+'    ThisWorkbook.Saved = is_saved
+'End Sub
+
+'Private Sub Workbook_BeforeSave(ByVal SaveAsUI As Boolean, Cancel As Boolean)
+'    РЎРєРѕРїРёСЂРѕРІР°С‚СЊ_Р°РЅР°Р»РѕРіРё
+'End Sub
+
+Private Sub Workbook_Open()
+    'Application.Calculation = xlCalculationManual
+    Application.CalculateBeforeSave = False ' С‡С‚РѕР±С‹ РЅРµ С‚РѕСЂРјРѕР·РёР»Рѕ РёР·-Р·Р° РїРµСЂРµСЃС‡РµС‚Р°
+    
+    u = InsertExchangeRateFromCBRF(Date)
+    If u Then   ' РµСЃР»Рё Р±С‹Р»Р° СЃРµС‚РµРІР°СЏ РѕС€РёР±РєР°, С‚РѕРіРґР° РЅРµС‚ СЃРјС‹СЃР»Р° РґРµСЂРіР°С‚СЊ РѕСЃС‚Р°Р»СЊРЅС‹Рµ РєСѓСЂСЃС‹
+        Range("k_ru_dol") = u
+        Range("k_ru_dol").Offset(0, 1) = Date
+    
+        e = InsertExchangeRateFromCBRF(Date, "EUR")
+        Range("k_ru_evro") = e
+        Range("k_ru_evro").Offset(0, 1) = Date
+    
+        c = InsertExchangeRateFromCBRF(Date, "CNY")
+        Range("k_ru_yuan") = c '/ 10
+        Range("k_ru_yuan").Offset(0, 1) = Date
+    End If
+    
+End Sub
