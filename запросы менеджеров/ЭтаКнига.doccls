@@ -1,7 +1,0 @@
-п»їPrivate Sub Workbook_Open()
-
-    'Application.OnKey "%q", "Open_my_folder"
-    'Application.OnKey "%w", "Open_my_file"
-    If ActiveSheet.Name = "Р’РЎР•" Then Application.Run "Р›РёСЃС‚3.Worksheet_Activate" Else ThisWorkbook.Worksheets("Р’РЎР•").Activate
-    
-End Sub

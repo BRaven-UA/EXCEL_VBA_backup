@@ -1,0 +1,7 @@
+﻿Private Sub Workbook_Open()
+
+    'Application.OnKey "%q", "Open_my_folder"
+    'Application.OnKey "%w", "Open_my_file"
+    If ActiveSheet.Name = "ВСЕ" Then Application.Run "Лист3.Worksheet_Activate" Else ThisWorkbook.Worksheets("ВСЕ").Activate
+    
+End Sub

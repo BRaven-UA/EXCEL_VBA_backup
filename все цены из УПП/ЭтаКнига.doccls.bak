@@ -1,19 +1,19 @@
-п»ї'Private Sub Workbook_BeforeClose(Cancel As Boolean)
+﻿'Private Sub Workbook_BeforeClose(Cancel As Boolean)
 '    is_saved = ThisWorkbook.Saved
 '    Application.Calculation = xlCalculationAutomatic
 '    ThisWorkbook.Saved = is_saved
 'End Sub
 
 'Private Sub Workbook_BeforeSave(ByVal SaveAsUI As Boolean, Cancel As Boolean)
-'    РЎРєРѕРїРёСЂРѕРІР°С‚СЊ_Р°РЅР°Р»РѕРіРё
+'    Скопировать_аналоги
 'End Sub
 
 Private Sub Workbook_Open()
     'Application.Calculation = xlCalculationManual
-    Application.CalculateBeforeSave = False ' С‡С‚РѕР±С‹ РЅРµ С‚РѕСЂРјРѕР·РёР»Рѕ РёР·-Р·Р° РїРµСЂРµСЃС‡РµС‚Р°
+    Application.CalculateBeforeSave = False ' чтобы не тормозило из-за пересчета
     
     u = InsertExchangeRateFromCBRF(Date)
-    If u Then   ' РµСЃР»Рё Р±С‹Р»Р° СЃРµС‚РµРІР°СЏ РѕС€РёР±РєР°, С‚РѕРіРґР° РЅРµС‚ СЃРјС‹СЃР»Р° РґРµСЂРіР°С‚СЊ РѕСЃС‚Р°Р»СЊРЅС‹Рµ РєСѓСЂСЃС‹
+    If u Then   ' если была сетевая ошибка, тогда нет смысла дергать остальные курсы
         Range("k_ru_dol") = u
         Range("k_ru_dol").Offset(0, 1) = Date
     

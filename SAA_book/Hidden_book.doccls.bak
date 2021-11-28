@@ -1,0 +1,94 @@
+﻿Private Sub Workbook_Open()
+
+Set App.App_Ev = Application
+
+Application.OnKey "^{END}", "gotoend"
+Application.OnKey "%1", "Alt_1"
+Application.OnKey "%2", "Alt_2"
+Application.OnKey "%3", "Alt_3"
+Application.OnKey "%b", "Duplicate_rows"
+Application.OnKey "%{UP}", "'Shift_selected ""up""'"
+Application.OnKey "%{DOWN}", "'Shift_selected ""down""'"
+Application.OnKey "%{RIGHT}", "'Shift_selected ""right""'"
+Application.OnKey "%{LEFT}", "'Shift_selected ""left""'"
+Application.OnKey "+^{END}", "shiftgotoend"
+Application.OnKey "^{TAB}", "TABpages"
+Application.OnKey "^b", "'долгий_расчет ""avto_ochenka_start""'"
+Application.OnKey "^w", "'долгий_расчет ""avto_ves""'"
+Application.OnKey "^o", "'долгий_расчет ""avto_koef_opis""'"
+Application.OnKey "^r", "'долгий_расчет ""PRESS_ctrl_r""'"
+Application.OnKey "^p", "'долгий_расчет ""avto_mownost""'"
+
+'Application.CommandBars.Add(Name:="Private Bar", Position:=msoBarBottom, Temporary:=True).Visible = True  'создаем временную панель пользователя (удаляется при закрытии файла)
+'With Application.CommandBars("Private Bar").Controls.Add(Type:=msoControlButton)
+'    .Style = msoButtonCaption
+'    .Caption = " Отладка "
+'    .TooltipText = "Вызывает отладочное окно"
+'    .OnAction = "Debug_window"
+'End With
+'With Application.CommandBars("Private Bar").Controls.Add(Type:=msoControlButton)
+'    .Style = msoButtonCaption
+'    .Caption = " Скрыть "
+'    .TooltipText = "Скрывает строки спецификации с нулевым количеством"
+'    .OnAction = "hideemptyrows"
+'End With
+'With Application.CommandBars("Private Bar").Controls.Add(Type:=msoControlButton)
+'    .Style = msoButtonCaption
+'    .Caption = " {RUS} "
+'    .TooltipText = "Выделяет красным цветом символы кириллицы в выбранном диапазоне ячеек" & Chr(13) & "Не работает с формулами и выделяет их зеленым"
+'    .OnAction = "рус_символы"
+'End With
+'With Application.CommandBars("Private Bar").Controls.Add(Type:=msoControlButton)
+'    .Style = msoButtonCaption
+'    .Caption = " Узел "
+'    .TooltipText = "Вставляет в выбранную ячейку формулу для автонумерации узлов"
+'    .OnAction = "Номер_узла"
+'End With
+'With Application.CommandBars("Private Bar").Controls.Add(Type:=msoControlButton)
+'    .Style = msoButtonCaption
+'    .Caption = " 4,1,2 "
+'    .TooltipText = "Продолжает нумерацию внутри узла для выбранных ячеек" & Chr(13) & "При нажатой клавише Ctrl начинает новый подпункт"
+'    .OnAction = "продолжение_нумерации"
+'End With
+'With Application.CommandBars("Private Bar").Controls.Add(Type:=msoControlButton)
+'    .Style = msoButtonCaption
+'    .Caption = " Sum "
+'    .TooltipText = "Помещает в буфер обмена сумму выделенных ячеек"
+'    .OnAction = "Summ_to_Clipboard"
+'End With
+'With Application.CommandBars("Private Bar").Controls.Add(Type:=msoControlButton)
+'    .Style = msoButtonCaption
+'    .Caption = " =Formula "
+'    .TooltipText = "помещает в буфер обмена формулы выделенного диапазона ячеек"
+'    .OnAction = "Formula_to_Clipboard"
+'End With
+'With Application.CommandBars("Private Bar").Controls.Add(Type:=msoControlButton)
+'    .Style = msoButtonCaption
+'    .Caption = " Приложение "
+'    .TooltipText = "Формирует из текущей спецификации новый лист в формате приложения к договору"
+'    .OnAction = "Формирование_приложения"
+'End With
+'With Application.CommandBars("Private Bar").Controls.Add(Type:=msoControlButton)
+'    .Style = msoButtonCaption
+'    .Caption = " $"
+'    .TooltipText = "Форматирует выделенный диапазон ячеек в валюту 'доллар'"
+'    .OnAction = "доллары"
+'End With
+'With Application.CommandBars("Private Bar").Controls.Add(Type:=msoControlButton)
+'    .Style = msoButtonCaption
+'    .Caption = "р"
+'    .TooltipText = "Форматирует выделенный диапазон ячеек в валюту 'рубль'"
+'    .OnAction = "рубли"
+'End With
+'With Application.CommandBars("Private Bar").Controls.Add(Type:=msoControlButton)
+'    .Style = msoButtonCaption
+'    .Caption = "€ "
+'    .TooltipText = "Форматирует выделенный диапазон ячеек в валюту 'евро'"
+'    .OnAction = "евро"
+'End With
+
+'Call RAM_files_update
+'Application.EnableEvents = False
+
+'Debug_form.Left = Application.Width - Debug_form.Width - 5
+End Sub
